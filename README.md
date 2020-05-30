@@ -38,3 +38,12 @@ https://github.com/dineschandgr/movie-info-repo-codepipeline
 https://github.com/dineschandgr/movie-catalog-repo-codepipeline
 
 https://github.com/dineschandgr/Microservices_Spring_Boot
+
+
+<img width="500" alt="API Architecture" src="https://github.com/dineschandgr/AWS_Microservices_ECS_Fargate/blob/master/containers_task_definition.png">
+
+
+<img width="500" alt="API Architecture" src="https://github.com/dineschandgr/AWS_Microservices_ECS_Fargate/blob/master/containers_task_definition_1.png">
+
+
+<img width="500" alt="API Architecture" src="https://github.com/dineschandgr/AWS_Microservices_ECS_Fargate/blob/master/Service.JPG">
