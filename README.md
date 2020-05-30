@@ -39,11 +39,23 @@ https://github.com/dineschandgr/movie-catalog-repo-codepipeline
 
 https://github.com/dineschandgr/Microservices_Spring_Boot
 
+Task Definition Config
 
-<img width="500" alt="API Architecture" src="https://github.com/dineschandgr/AWS_Microservices_ECS_Fargate/blob/master/containers_task_definition.png">
-
-
-<img width="500" alt="API Architecture" src="https://github.com/dineschandgr/AWS_Microservices_ECS_Fargate/blob/master/containers_task_definition_1.png">
+<img width="500" alt="Task Def" src="https://github.com/dineschandgr/AWS_Microservices_ECS_Fargate/blob/master/containers_task_definition.png">
 
 
-<img width="500" alt="API Architecture" src="https://github.com/dineschandgr/AWS_Microservices_ECS_Fargate/blob/master/Service.JPG">
+<img width="500" alt="Task def " src="https://github.com/dineschandgr/AWS_Microservices_ECS_Fargate/blob/master/containers_task_definition_1.png">
+
+Service Config
+
+<img width="500" alt="Service" src="https://github.com/dineschandgr/AWS_Microservices_ECS_Fargate/blob/master/Service.JPG">
+
+Environment Variables
+
+<img width="500" alt="Env Variables" src="https://github.com/dineschandgr/AWS_Microservices_ECS_Fargate/blob/master/env_variables.PNG">
+
+Xray Distributed tracing
+
+<img width="500" alt="Xray" src="https://github.com/dineschandgr/AWS_Microservices_ECS_Fargate/blob/master/microservices_xray.bmp">
+
+<img width="500" alt="Xray" src="https://github.com/dineschandgr/AWS_Microservices_ECS_Fargate/blob/master/microservices_xray_1.bmp">
