@@ -1,0 +1,44 @@
+version: '3'
+services: 
+    eureka: 
+        image: dineshchandgr/microservices-repo:discovery-server-image
+        build: ./discovery-server
+        expose: 
+            - "8761"
+        ports:
+            - "8761:8761"            
+        networks: 
+            - webnet
+    movie-catalog-service:
+        image: dineshchandgr/microservices-repo:movie-catalog-image
+        build: ./movie-catalog-service
+        expose: 
+            - 8081
+        ports:
+            - "8081-8082:8081"     
+        networks: 
+            - webnet
+        
+    movie-info-service:
+        image: dineshchandgr/microservices-repo:movie-info-image
+        build: ./movie-info-service
+        expose: 
+            - 8083
+        ports:
+            - "8083-8084:8082"  
+        networks: 
+            - webnet
+        
+    ratings-data-service:
+        image: dineshchandgr/microservices-repo:ratings-data-image
+        build: ./ratings-data-service
+        expose: 
+            - 8085
+        ports:
+            - "8085-8086:8083"  
+        networks: 
+            - webnet
+        
+networks:
+   webnet:                    
+    

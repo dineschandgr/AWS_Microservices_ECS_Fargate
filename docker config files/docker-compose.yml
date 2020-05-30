@@ -1,0 +1,39 @@
+version: '3'
+services: 
+    eureka:
+        image: dineshchandgr/microservices-repo:discovery-server-image
+        build: ./discovery-server
+        expose: 
+            - "8761"
+        ports:
+            - "8761:8761"
+        logging:    
+            driver: awslogs
+            options: 
+                awslogs-group: discovery-server
+                awslogs-region: ap-southeast-1
+                awslogs-stream-prefix: discovery        
+        networks: 
+            - webnet
+    movie-info-service:
+        image: dineshchandgr/microservices-repo:movie-info-image
+        build: ./movie-info-service
+        ports:
+            - "8082:8082"
+        depends_on:
+            - eureka
+        logging:    
+            driver: awslogs
+            options: 
+                awslogs-group: movie-info
+                awslogs-region: ap-southeast-1
+                awslogs-stream-prefix: movieinfo    
+        networks: 
+            - webnet
+        
+        #environment: 
+           #EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:8761/eureka
+networks:
+   webnet: 
+                   
+    

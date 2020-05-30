@@ -1,0 +1,42 @@
+version: '3'
+services: 
+    eureka:
+        image: dineshchandgr/microservices-repo:discovery-server-image
+        build: ./discovery-server
+        expose: 
+            - "8761"
+        ports:
+            - "8761:8761"            
+        networks: 
+            - webnet
+    movie-catalog-service:
+        image: dineshchandgr/microservices-repo:movie-catalog-image
+        build: ./movie-catalog-service
+              
+        networks: 
+            - webnet
+        deploy: 
+            mode: replicated
+            replicas : 2
+        #environment: 
+            #EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka:8761/eureka
+    movie-info-service:
+        image: dineshchandgr/microservices-repo:movie-info-image
+        build: ./movie-info-service
+        
+        networks: 
+            - webnet
+        deploy: 
+           mode: replicated
+           replicas : 2
+     ratings-data-service:
+        image: dineshchandgr/microservices-repo:ratings-data-image
+        build: ./ratings-data-service
+        networks: 
+            - webnet
+        deploy: 
+           mode: replicated
+           replicas : 2
+networks:
+   webnet:                    
+    

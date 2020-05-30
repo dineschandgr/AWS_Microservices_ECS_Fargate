@@ -1,0 +1,91 @@
+version: '3.7'
+services: 
+    eureka:
+        image: dineshchandgr/microservices-complete-repo:discovery-server-image
+        build: ./discovery-server
+        expose: 
+            - "8761"
+        ports:
+            - "8761:8761"
+        networks: 
+            - webnet
+    movie-catalog-service:
+        image: dineshchandgr/microservices-complete-repo:movie-catalog-image
+        build: ./movie-catalog-service
+        ports:
+            - "8081:8081"
+        networks: 
+            - webnet
+        restart: always
+        environment:
+            RABBIT_URI: amqp://guest:guest@rabbitmq:5672
+        depends_on:
+            - rabbitmq
+            - zipkin-server
+        restart: always       
+        networks:
+            - webnet        
+    movie-info-service:
+        image: dineshchandgr/microservices-complete-repo:movie-info-image
+        build: ./movie-info-service
+        ports:
+            - "8082:8082"
+        restart: always
+        environment:
+            RABBIT_URI: amqp://guest:guest@rabbitmq:5672
+        depends_on:
+            - rabbitmq
+            - zipkin-server
+        networks: 
+            - webnet        
+    ratings-data-service:
+        image: dineshchandgr/microservices-repo:ratings-data-image
+        build: ./ratings-data-service
+        ports:
+            - "8083:8083"
+        restart: always
+        environment:
+            RABBIT_URI: amqp://guest:guest@rabbitmq:5672
+        depends_on:
+            - rabbitmq
+            - zipkin-server
+        networks: 
+            - webnet
+    rabbitmq:
+        image: rabbitmq:3.5.3-management
+        ports:
+        - "5672:5672"
+        - "15672:15672"
+        restart: always
+        networks:
+            - webnet
+    zipkin-server:
+        image: openzipkin/zipkin
+        #container_name: zipkin
+        environment:
+            STORAGE_TYPE: mem
+            RABBIT_URI: amqp://guest:guest@rabbitmq:5672
+        ports:
+        - "9411:9411"
+        restart: always
+        depends_on:
+        - rabbitmq
+        networks:
+            - webnet
+    zuul-api-gateway:
+        image: dineshchandgr/microservices-complete-repo:zuul-api-gateway
+        build: ./NetflixZuulApiGatewayServer       
+      #dockerfile: Dockerfile
+        environment:
+            RABBIT_URI: amqp://guest:guest@rabbitmq:5672
+        ports:
+            - "8765:8765"
+        restart: always
+        depends_on:
+        - rabbitmq
+        - zipkin-server
+        networks:
+           - webnet
+networks:
+   webnet:                    
+    

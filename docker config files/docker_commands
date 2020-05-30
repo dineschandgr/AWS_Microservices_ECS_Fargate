@@ -1,0 +1,41 @@
+Docker commands
+
+docker -t image-name build .
+
+docker run
+
+docker-compose up
+docker-compose push
+
+docker-compose up --scale movie-catalog-service=3 --scale movie-info-service=2
+
+docker network create movie-net
+
+docker run --env RATINGS_DATA_URI=http://ratings-data-service:8083 --env MOVIE_INFO_URI=http://movie-info-service:8082 --publish 8081:8081 --network movie-net -- dineshchandgr/aws-repo/movie-catalog-service:0.0.1-SNAPSHOT 
+
+docker run --publish 8082:8082 --network movie-net --name=movie-info-service dineshchandgr/aws-repo/movie-info-service:0.0.1-SNAPSHOT 
+
+docker run --publish 8083:8083 --network movie-net --name=ratings-data-service dineshchandgr/aws-repo/ratings-data-service:0.0.1-SNAPSHOT 
+
+docker logs -f "containerid"
+
+docker stop $(docker ps -a -q)
+
+docker rm -vf $(docker ps -a -q)
+
+
+remove all images
+docker rmi -f $(docker images -a -q)
+
+
+aws ecs commands
+
+
+ecs-cli configure --cluster microservices-fargate-cluster --region ap-southeast-1 --config-name default --default-launch-type FARGATE
+
+ecs-cli up --capability-iam --security-group sg-06a9edd377db86c43 --vpc vpc-142d2e73 --subnets subnet-c445b1a2,subnet-a62083ff --instance-type t2.small
+
+
+ecs-cli compose service down
+
+ecs-cli compose service rm
