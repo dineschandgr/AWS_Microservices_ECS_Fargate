@@ -1,23 +1,40 @@
 # AWS_Microservices_ECS_Fargate
 Deploying Microservices to AWS ECS Fargate
 
+1. Create 3 separate fargate task definitions for 3 individual microservices
+2. Add 3 containers for every service as follows
+    1. Microservice Docker image from Docker Hub
+    2. Xray docker image
+    3. Envoy proxy docker image as side car pattern
+3. Create a fargate service from the task definition
+4. Configure load balancer and add listener and target group
+5. Set load balancer health check path to actuator path
+6.  Create a name space and enable service discovery for microservice as follows. The private dns is creatd in route 53.
+    Every time a task ip is changed, the DNS is automatically updated
+  
+    1. movie-catalog-service.microservice.io (servicename.namespace)  
+    2. movie-info-service.microservice.io (servicename.namespace)
+    3. ratings-data-service.microservice.io (servicename.namespace)
+    
+7.  Use App mesh for managing microservices. Create the following
 
-App mesh 
+    1. Create mesh
+    2. virtual node
+    3. virtual service
 
-create mesh
-virtual node
-virtual service
+8. Map the virtual node to the fargate service
+
+Important Configurations
+
+1. Add the security group of microservices containers to the RDS security group for port 3306 with type Myssql/Aurora
+2. Exclude port 3306 in proxy configuration for app mesh
+3. Provide environment variables for the Movie Info and Ratings data service in Movie catalog service
 
 
-envoy
-service discovery
+Refer to the following github repo for the source code and the steps to execute
 
-route 53 - private dns
+https://github.com/dineschandgr/ratings-data-repo-codepipeline
+https://github.com/dineschandgr/movie-info-repo-codepipeline
+https://github.com/dineschandgr/movie-catalog-repo-codepipeline
 
-xray
-
-task definition
-service creates tasks
-
-rds security group allow container grp
 https://github.com/dineschandgr/Microservices_Spring_Boot
