@@ -34,7 +34,9 @@ Important Configurations
 Refer to the following github repo for the source code and the steps to execute
 
 https://github.com/dineschandgr/ratings-data-repo-codepipeline
+
 https://github.com/dineschandgr/movie-info-repo-codepipeline
+
 https://github.com/dineschandgr/movie-catalog-repo-codepipeline
 
 https://github.com/dineschandgr/Microservices_Spring_Boot
